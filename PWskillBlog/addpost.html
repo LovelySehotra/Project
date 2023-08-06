@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog Content</title>
+  <!-- <link rel="stylesheet" href="./css/stylesheet.css"> -->
+  <link rel="stylesheet" href="./css/addpost.css">
+</head>
+
+<body>
+  <header>
+    <h1>Read the article </h1>
+  </header>
+  <main>
+    <div id="blogContent">
+      <!-- Blog content will be displayed here -->
+    </div>
+  </main>
+  <script src="./script/script.js"></script>
+  <script>
+    // Function to display the individual blog post content
+    function displayBlogContent() {
+      const blogContent = document.getElementById('blogContent');
+      blogContent.innerHTML = '';
+
+      // Retrieve the selected blog from LocalStorage
+      const selectedBlog = localStorage.getItem('selectedBlog');
+      if (selectedBlog) {
+        const blog = JSON.parse(selectedBlog);
+        const blogCard = document.createElement('div');
+        blogCard.classList.add('blog-card');
+        blogCard.innerHTML = `
+          <h2>${blog.title}</h2>
+          <p>${blog.description}</p>
+          <p>${blog.content}</p>
+        `;
+        blogContent.appendChild(blogCard);
+      }
+    }
+
+    // Call the function on page load
+    window.onload = function () {
+      displayBlogContent();
+    };
+  </script>
+</body>
+
+</html>
